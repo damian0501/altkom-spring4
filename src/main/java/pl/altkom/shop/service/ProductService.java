@@ -7,4 +7,8 @@ import pl.altkom.shop.repo.ProductRepo;
 public class ProductService {
 	@Autowired
 	private ProductRepo repo;
+
+	public ProductRepo getProductRepo() {
+		return repo;
+	}
 }
