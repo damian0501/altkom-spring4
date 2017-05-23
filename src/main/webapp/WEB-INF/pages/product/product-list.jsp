@@ -9,17 +9,27 @@
 <%@ include file="/WEB-INF/pages/layout/head.jsp"%>
 
 <div class="jumbotron">
-  <h1>Product List!</h1>
+  <h1>Products List!</h1>
+  
+  ${page}
+  ${size}
+  ${orderBy}
   
   <table>
     <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Price</th>
     </tr>
     <c:forEach items="${productList}" var="product">
         <tr>
             <td>${product.id}</td>
             <td>${product.name}</td>
+            <td>${product.description}</td>
+			<td>${product.quantity}</td>
+			<td>${product.price}</td>
         </tr>
     </c:forEach>
 </table>

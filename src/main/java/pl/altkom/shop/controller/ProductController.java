@@ -28,7 +28,8 @@ public class ProductController {
 		// writer.write("product/list?page=" + page + "&size=" + size +
 		// "&orderBy=" + orderBy);
 		model.addAttribute("page", page);
-		model.addAttribute("orderBy ", orderBy);
+		model.addAttribute("orderBy", orderBy);
+		model.addAttribute("size", size);
 
 		List<Product> products = productService.getAll();
 		model.addAttribute("productList", products);
