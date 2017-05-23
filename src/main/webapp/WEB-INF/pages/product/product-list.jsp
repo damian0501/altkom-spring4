@@ -9,10 +9,10 @@
 <%@ include file="/WEB-INF/pages/layout/head.jsp"%>
 
 <div class="jumbotron">
-  <h1>Products!</h1>
+  <h1><spring:message code="product.list.title"/>!</h1>
   </br>
   <a href="new" class="btn btn-primary "> <i
-		class=" glyphicon glyphicon-plus"></i> Add new product</a>
+		class=" glyphicon glyphicon-plus"></i> <spring:message code="product.list.addNew"/></a>
 		
 <div class="col-xs-4 pull-right">
 <form method="get">
@@ -34,12 +34,27 @@
   <table class="table  table-hover table-stripe">
   <thead>
     <tr>
-        <th><a href="list?page=1&size=20&orderBy=ID">ID</a></th>
-        <th><a href="list?page=1&size=20&orderBy=NAME">Name</a></th>
-        <th><a href="list?page=1&size=20&orderBy=DESCRIPTION">Description</th>
-        <th><a href="list?page=1&size=20&orderBy=QUANTITY">Quantity</th>
-        <th><a href="list?page=1&size=20&orderBy=PRICE">Price</th>
-        <th>Action</th>
+        <th>ID 
+        <a href="list?orderBy=ID"> <i class="glyphicon glyphicon-sort-by-order"></i>
+        <a href="list?orderBy=ID&order=DESC"> <i class="glyphicon glyphicon-sort-by-order-alt"></i>
+        </th>
+        <th><spring:message code="product.name"/> 
+        <a href="list?orderBy=NAME"> <i class="glyphicon glyphicon-sort-by-alphabet"></i>
+        <a href="list?orderBy=NAME&order=DESC"> <i class="glyphicon glyphicon-sort-by-alphabet-alt"></i>
+        </th>
+        <th><spring:message code="product.description"/>  
+        <a href="list?orderBy=DESCRIPTION"> <i class="glyphicon glyphicon-sort-by-alphabet"></i>
+        <a href="list?orderBy=DESCRIPTION&order=DESC"> <i class="glyphicon glyphicon-sort-by-alphabet-alt"></i>
+        </th>
+        <th><spring:message code="product.quantity"/>  
+        <a href="list?orderBy=QUANTITY"> <i class="glyphicon glyphicon-sort-by-order"></i>
+        <a href="list?orderBy=QUANTITY&order=DESC"> <i class="glyphicon glyphicon-sort-by-order-alt"></i>
+        </th>
+        <th><spring:message code="product.price"/>  
+        <a href="list?orderBy=PRICE"> <i class="glyphicon glyphicon-sort-by-order"></i>
+        <a href="list?orderBy=PRICE&order=DESC"> <i class="glyphicon glyphicon-sort-by-order-alt"></i>
+        </th>
+        <th><spring:message code="product.list.action"/> </th>
     </tr>
     </thead>
     <tbody>
@@ -57,13 +72,13 @@
     </c:forEach>
      <form:form method="POST" modelAttribute="newProduct" action="${contextPath}/product/save2">
     	<tr>
-            <td>Fast add:</td>
+            <td><spring:message code="product.list.addFast"/></td>
             <td><form:input path="name" class="form-control"/></td>
             <td><form:input path="description" class="form-control"/></td>
 			<td><form:input path="quantity" class="form-control"/></td>
 			<td><form:input path="price" class="form-control"/></td>
 			<td><button type="submit" class="btn btn-primary pull-right">
-		<i class=" glyphicon glyphicon-ok"></i> Save
+		<i class=" glyphicon glyphicon-ok"></i> <spring:message code="product.list.save"/>
 	</button></td>
         </tr>
     </form:form>

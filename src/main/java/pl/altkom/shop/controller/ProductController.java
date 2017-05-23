@@ -29,6 +29,7 @@ public class ProductController {
 	public String list(Model model, @RequestParam(required = false, value = "page") Integer page,
 			@RequestParam(required = false, value = "size") Integer size,
 			@RequestParam(required = false, value = "orderBy") String orderBy,
+			@RequestParam(required = false, value = "order") String order,
 			@RequestParam(required = false, value = "query") String query) throws IOException {
 		// writer.write("product/list?page=" + page + "&size=" + size +
 		// "&orderBy=" + orderBy);
@@ -46,7 +47,7 @@ public class ProductController {
 		 * productService.queryProducts(products, query); }
 		 */
 		if (orderBy != null && !orderBy.isEmpty()) {
-			productService.sortProducts(products, orderBy);
+			productService.sortProducts(products, orderBy, order);
 		}
 		model.addAttribute("productList", products);
 		model.addAttribute("newProduct", new Product());

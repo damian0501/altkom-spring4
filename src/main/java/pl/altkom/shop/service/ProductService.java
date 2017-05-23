@@ -37,17 +37,24 @@ public class ProductService {
 		repo.update(product);
 	}
 
-	public List<Product> sortProducts(List<Product> products, String sortBy) {
+	public List<Product> sortProducts(List<Product> products, String sortBy, String order) {
+		final Integer k;
+		if ("DESC".equals(order)) {
+			k = -1;
+		} else {
+			k = 1;
+		}
+
 		if ("ID".equals(sortBy)) {
-			Collections.sort(products, (p1, p2) -> p1.getId().compareTo(p2.getId()));
+			Collections.sort(products, (p1, p2) -> k * p1.getId().compareTo(p2.getId()));
 		} else if ("NAME".equals(sortBy)) {
-			Collections.sort(products, (p1, p2) -> p1.getName().compareTo(p2.getName()));
+			Collections.sort(products, (p1, p2) -> k * p1.getName().compareTo(p2.getName()));
 		} else if ("DESCRIPTION".equals(sortBy)) {
-			Collections.sort(products, (p1, p2) -> p1.getDescription().compareTo(p2.getDescription()));
+			Collections.sort(products, (p1, p2) -> k * p1.getDescription().compareTo(p2.getDescription()));
 		} else if ("QUANTITY".equals(sortBy)) {
-			Collections.sort(products, (p1, p2) -> p1.getQuantity().compareTo(p2.getQuantity()));
+			Collections.sort(products, (p1, p2) -> k * p1.getQuantity().compareTo(p2.getQuantity()));
 		} else if ("PRICE".equals(sortBy)) {
-			Collections.sort(products, (p1, p2) -> p1.getPrice().compareTo(p2.getPrice()));
+			Collections.sort(products, (p1, p2) -> k * p1.getPrice().compareTo(p2.getPrice()));
 		}
 		return products;
 
