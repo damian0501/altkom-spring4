@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Product {
@@ -13,7 +16,12 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
+	@NotNull
+	@NotEmpty
 	private String name;
+
+	@NotNull
+	@NotEmpty
 	private String description;
 	private Integer quantity;
 	private BigDecimal price;

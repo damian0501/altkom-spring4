@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -86,8 +88,13 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/product/save", method = RequestMethod.POST)
-	public String submitForm(@ModelAttribute Product product) throws Exception {
+	public String submitForm(@ModelAttribute @Valid Product product, BindingResult bindingResult) throws Exception {
 		Product oldProduct = null;
+
+		// bindingResult.rejectValue("name", "product.name.illegal");
+		if (bindingResult.hasErrors()) {
+			return "product/product-form";
+		}
 		if (product.getId() != null) {
 			oldProduct = productService.find(product.getId());
 		}
@@ -96,7 +103,8 @@ public class ProductController {
 		} else {
 			productService.update(product);
 		}
-		return "redirect:/product/list";
+		return "product/product-form";
+		// return "redirect:/product/list";
 	}
 
 	@RequestMapping(value = "/product/{id}/edit", method = RequestMethod.GET)
