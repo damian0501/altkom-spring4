@@ -9,7 +9,20 @@
 <%@ include file="/WEB-INF/pages/layout/head.jsp"%>
 
 <div class="jumbotron">
-  <h1>Hello, world!</h1>
+  <h1>Product List!</h1>
+  
+  <table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+    <c:forEach items="${productList}" var="product">
+        <tr>
+            <td>${product.id}</td>
+            <td>${product.name}</td>
+        </tr>
+    </c:forEach>
+</table>
 </div>
 
 <%@ include file="/WEB-INF/pages/layout/footer.jsp"%>
