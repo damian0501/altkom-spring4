@@ -8,8 +8,10 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pl.altkom.shop.model.Product;
@@ -37,7 +39,7 @@ public class ProductController {
 			productService.sortProducts(products, orderBy);
 		}
 		model.addAttribute("productList", products);
-
+		model.addAttribute("newProduct", new Product());
 		return "product/product-list";
 	}
 
@@ -51,6 +53,46 @@ public class ProductController {
 	public String delete(Model model, @PathVariable("id") Long id) throws IOException {
 		productService.delete(id);
 		return "redirect:/product/list";
+	}
+
+	@RequestMapping(value = "/product/new2", method = RequestMethod.GET)
+	public String setupProductForm(Model model) {
+		model.addAttribute("newProduct", new Product());
+		return "redirect:/product/list";
+	}
+
+	@RequestMapping(value = "/product/save2", method = RequestMethod.POST)
+	public String processProductForm(@ModelAttribute Product newProduct) {
+		productService.insert(newProduct);
+		return "redirect:/product/list";
+	}
+
+	@RequestMapping(value = "/product/new", method = RequestMethod.GET)
+	public String prepareForm(Model model) throws Exception {
+		Product product = new Product();
+		model.addAttribute("product", product);
+		return "product/product-form";
+	}
+
+	@RequestMapping(value = "/product/save", method = RequestMethod.POST)
+	public String submitForm(@ModelAttribute Product product) throws Exception {
+		Product oldProduct = null;
+		if (product.getId() != null) {
+			oldProduct = productService.find(product.getId());
+		}
+		if (oldProduct == null) {
+			productService.insert(product);
+		} else {
+			productService.update(product);
+		}
+		return "redirect:/product/list";
+	}
+
+	@RequestMapping(value = "/product/{id}/edit", method = RequestMethod.GET)
+	public String editForm(Model model, @PathVariable("id") Long id) throws Exception {
+		Product product = productService.find(id);
+		model.addAttribute("product", product);
+		return "product/product-form";
 	}
 
 }
