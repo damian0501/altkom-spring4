@@ -13,6 +13,19 @@
   </br>
   <a href="new" class="btn btn-primary "> <i
 		class=" glyphicon glyphicon-plus"></i> Add new product</a>
+		
+<div class="col-xs-4 pull-right">
+<form method="get">
+		<div class="input-group">
+			<input type="text" name="query" class="form-control searcher"
+				placeholder="Search..." value="${param.query}"> <span class="input-group-btn">
+				<button class="btn btn-default" type="button">
+					<i class="glyphicon glyphicon-send" style="height:20px"></i>
+				</button>
+			</span>
+		</div>
+		</form>
+	</div>
   
 <%--   ${page}
   ${size}

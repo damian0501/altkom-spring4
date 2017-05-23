@@ -3,6 +3,7 @@ package pl.altkom.shop.controller;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -27,7 +28,8 @@ public class ProductController {
 	@RequestMapping(value = "/product/list")
 	public String list(Model model, @RequestParam(required = false, value = "page") Integer page,
 			@RequestParam(required = false, value = "size") Integer size,
-			@RequestParam(required = false, value = "orderBy") String orderBy) throws IOException {
+			@RequestParam(required = false, value = "orderBy") String orderBy,
+			@RequestParam(required = false, value = "query") String query) throws IOException {
 		// writer.write("product/list?page=" + page + "&size=" + size +
 		// "&orderBy=" + orderBy);
 		model.addAttribute("page", page);
@@ -35,6 +37,14 @@ public class ProductController {
 		model.addAttribute("size", size);
 
 		List<Product> products = productService.getAll();
+		if (query != null && !query.isEmpty()) {
+			products = products.stream().filter(p -> p.getName().toLowerCase().contains(query.toLowerCase()))
+					.collect(Collectors.toList());
+		}
+		/*
+		 * if (query != null && !query.isEmpty()) { products =
+		 * productService.queryProducts(products, query); }
+		 */
 		if (orderBy != null && !orderBy.isEmpty()) {
 			productService.sortProducts(products, orderBy);
 		}

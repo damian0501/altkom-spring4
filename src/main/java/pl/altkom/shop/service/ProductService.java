@@ -1,5 +1,6 @@
 package pl.altkom.shop.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -49,6 +50,18 @@ public class ProductService {
 			Collections.sort(products, (p1, p2) -> p1.getPrice().compareTo(p2.getPrice()));
 		}
 		return products;
+
+	}
+
+	public List<Product> queryProducts(List<Product> products, String query) {
+		List<Product> result = new ArrayList<>();
+		for (Product product : products) {
+			if (product.getName().contains(query)) {
+				result.add(product);
+			}
+
+		}
+		return result;
 
 	}
 
