@@ -15,13 +15,14 @@
   ${size}
   ${orderBy}
   
-  <table>
+  <table class="table">
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Quantity</th>
-        <th>Price</th>
+        <th><a href="list?page=1&size=20&orderBy=ID">ID</a></th>
+        <th><a href="list?page=1&size=20&orderBy=NAME">Name</a></th>
+        <th><a href="list?page=1&size=20&orderBy=DESCRIPTION">Description</th>
+        <th><a href="list?page=1&size=20&orderBy=QUANTITY">Quantity</th>
+        <th><a href="list?page=1&size=20&orderBy=PRICE">Price</th>
+        <th>Action</th>
     </tr>
     <c:forEach items="${productList}" var="product">
         <tr>
@@ -30,6 +31,7 @@
             <td>${product.description}</td>
 			<td>${product.quantity}</td>
 			<td>${product.price}</td>
+			<td><a href="${product.id}/delete"> <i class=" glyphicon glyphicon-remove-circle"></i></td>
         </tr>
     </c:forEach>
 </table>

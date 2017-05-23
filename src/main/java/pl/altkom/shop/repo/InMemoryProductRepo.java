@@ -23,6 +23,11 @@ public class InMemoryProductRepo implements ProductRepo {
 	public void init() {
 		insert(new Product("Rower", "Bardzo dobry rower", 12, BigDecimal.TEN));
 		insert(new Product("Sanki", "Sanki zimowe", 123, BigDecimal.valueOf(12.45)));
+		insert(new Product("Cos", "Sanki letnie", 123, BigDecimal.valueOf(12.45)));
+		insert(new Product("Nic", "Sanki wiosenne", 123, BigDecimal.valueOf(12.45)));
+		insert(new Product("Biurko", "Sanki jesienne", 123, BigDecimal.valueOf(12.45)));
+		insert(new Product("Krzesło", "Bez oparcia", 123, BigDecimal.valueOf(12.45)));
+		insert(new Product("Monitor", "Maly monitor", 123, BigDecimal.valueOf(12.45)));
 
 		log.info("#####################################");
 		log.info("Products added");
