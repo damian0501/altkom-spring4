@@ -2,6 +2,7 @@ package pl.altkom.shop.repo;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,8 @@ public class InMemoryProductRepo implements ProductRepo {
 
 	@Override
 	public Long insert(Product product) {
-		product.setId(products.size() + 1L);
+
+		product.setId(products.isEmpty() ? 1L : Collections.max(products.keySet()) + 1L);
 
 		products.put(product.getId(), product);
 
