@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,7 +49,17 @@ public class HibernateProductRepo implements ProductRepo {
 
 	@Override
 	@Transactional(readOnly = true)
+	public List<Product> getAll(String text) {
+		Query createQuery = em.createQuery("FROM Product p WHERE p.name like :name");
+		// Query createQuery = em.createQuery("FROM Product p WHERE p.name like
+		// " + text);
+		createQuery.setParameter("name", text + "%");
+		return createQuery.getResultList();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
 	public List<Product> getAll() {
-		return em.createQuery("FROM Product p").getResultList();
+		return em.createQuery("FROM Product p ").getResultList();
 	}
 }

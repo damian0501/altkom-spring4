@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import pl.altkom.shop.aop.Monitoring;
@@ -25,8 +26,8 @@ public class RestProductController {
 
 	@Monitoring
 	@RequestMapping(method = RequestMethod.GET)
-	public List<Product> list() {
-		return repo.getAll();
+	public List<Product> list(@RequestParam(required = false, value = "query") String query) {
+		return repo.getAll(query);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

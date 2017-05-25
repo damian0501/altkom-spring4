@@ -43,7 +43,7 @@ public class InMemoryProductRepo implements ProductRepo {
 	}
 
 	@Override
-	public List<Product> getAll() {
+	public List<Product> getAll(String findText) {
 		return new ArrayList<Product>(products.values());
 	}
 
@@ -62,5 +62,10 @@ public class InMemoryProductRepo implements ProductRepo {
 	public void update(Product product) {
 		products.put(product.getId(), product);
 
+	}
+
+	@Override
+	public List<Product> getAll() {
+		return new ArrayList<Product>(products.values());
 	}
 }

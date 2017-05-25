@@ -12,7 +12,7 @@ public class Runner {
 		ProductService productService = (ProductService) context.getBean("productService");
 		System.out.println(productService);
 		ProductRepo repo = context.getBean(ProductRepo.class);
-		System.out.println(repo.getAll());
+		System.out.println(repo.getAll(""));
 	}
 
 }

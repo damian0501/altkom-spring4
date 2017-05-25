@@ -35,7 +35,7 @@ public class ProductController {
 		model.addAttribute("page", page);
 		model.addAttribute("orderBy ", orderBy);
 
-		List<Product> products = repo.getAll();
+		List<Product> products = repo.getAll("");
 		model.addAttribute("products", products);
 
 		return "product/product-list";
@@ -44,7 +44,7 @@ public class ProductController {
 	@RequestMapping("/list.pdf")
 	public String listAsPdf(@RequestParam(required = false, value = "page") Integer page, Model model)
 			throws Exception {
-		List<Product> products = repo.getAll();
+		List<Product> products = repo.getAll("");
 		model.addAttribute("products", products);
 		return "productPDFView";
 	}

@@ -18,4 +18,7 @@ public interface ProductRepo {
 
 	@Monitoring
 	public List<Product> getAll();
+
+	@Monitoring
+	public List<Product> getAll(String findText);
 }
