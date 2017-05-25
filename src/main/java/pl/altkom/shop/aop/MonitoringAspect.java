@@ -53,7 +53,7 @@ public class MonitoringAspect {
 
 	// @After(value = "@within(pl.altkom.shop.aop.Monitoring) ||
 	// @annotation(pl.altkom.shop.aop.Monitoring)")
-	// @After("cflow(@annotation(pl.altkom.shop.aop.Monitoring))")
+	// @After("flow(@annotation(pl.altkom.shop.aop.Monitoring))")
 	public void after(JoinPoint joinPoint) throws Throwable {
 		LOG.info("monitor.after, class: " + joinPoint.getSignature().getDeclaringType().getSimpleName() + ", method: "
 				+ joinPoint.getSignature().getName());
